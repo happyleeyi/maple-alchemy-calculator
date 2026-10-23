@@ -23,11 +23,12 @@
 
 @media(min-width:851px){.sidebar{max-height:100vh;overflow-y:auto}}.sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:#dce3d4;border-radius:4px}
 
+.tool-nav{display:flex;align-items:center;gap:7px}.tool-nav a{font-size:12px;text-decoration:none;padding:9px 15px;border-radius:9px;color:#8a9783;white-space:nowrap}.tool-nav [aria-current=page]{background:var(--pale);color:var(--dark);font-weight:700}@media(max-width:1000px){.topbar .header-right{display:none}}@media(max-width:650px){.topbar{gap:12px;padding-left:15px;padding-right:15px}.tool-nav{gap:2px}.tool-nav a{font-size:10px;padding:7px 8px}}@media(max-width:380px){.topbar{height:auto;min-height:75px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}.tool-nav{margin-left:auto}}
 </style>
 
 </head>
 <body id="top">
-  <header class="topbar"><a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">⚗</span><span>연금술 연구실<small>MAPLE ALCHEMY</small></span></a><div class="header-right"><span class="world"><i></i> 스카니아 · 명장</span><span id="save-status" role="status">브라우저에 자동 저장</span></div></header>
+  <header class="topbar"><a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">⚗</span><span>연금술 연구실<small>MAPLE ALCHEMY</small></span></a><nav class="tool-nav" aria-label="도구 선택"><a href="./" aria-current="page">수익 계산기</a><a href="./timer.html">재획 타이머</a></nav><div class="header-right"><span class="world"><i></i> 스카니아 · 명장</span><span id="save-status" role="status">브라우저에 자동 저장</span></div></header>
   <div class="layout">
     <aside class="sidebar" aria-label="계산 조건">
       <div class="section-kicker">CRAFTING PLAN</div>
