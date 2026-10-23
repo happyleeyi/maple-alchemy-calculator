@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#163f37">
+  <meta name="description" content="재료비, 레시피, 수수료와 피로회복제 비용을 반영하는 메이플스토리 이틀 비약 제작 수익 계산기">
+  <title>연금술 수익 계산기 · 메이플</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTciIGZpbGw9IiMxNjNmMzciLz48cGF0aCBkPSJNMjUgMTJoMTRtLTEyIDB2MTdMMTUgNDdxLTMgNiA1IDZoMjRxOCAwIDUtNkwzNyAyOVYxMiIgc3Ryb2tlPSIjZjBlOGM4IiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Im0yMiAzOS02IDEwcS0xIDIgNCAyaDI0cTUgMCA0LTJsLTYtMTBaIiBmaWxsPSIjYTNjOThiIi8+PGNpcmNsZSBjeD0iMzEiIGN5PSIzNCIgcj0iMiIgZmlsbD0iI2EzYzk4YiIvPjwvc3ZnPgo=">
+  <style>500;600;700;800;900&display=swap');
+:root{--bg:#f5f6f2;--surface:#fff;--ink:#202e2a;--muted:#7a837e;--border:#e6e9e3;--green:#1b6853;--dark:#163f37;--pale:#edf5ed;--red:#b4574b;--gold:#d3b775;--radius:16px;font-synthesis:none;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif;font-size:14px;line-height:1.6}button,input,select{font:inherit}button,a,input,select,summary{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:default}a{color:inherit}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #78a58c;outline-offset:4px}input:focus,select:focus{outline:2px solid #559e7f;outline-offset:1px}input{min-width:0;border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--ink);background:#fff;font-variant-numeric:tabular-nums}input::placeholder{color:#a2aaa4;font-weight:400}input.invalid{border-color:#d39788;background:#fffaf6}select{border:1px solid var(--border);background:white;border-radius:7px;padding:8px 28px 8px 10px;font-size:12px;color:#53615a}button{border:0}h1,h2,h3,p{margin:0}button,input,select{transition:background .15s,border-color .15s,box-shadow .15s}button:hover{filter:brightness(.97)}[hidden]{display:none!important}.muted{color:var(--muted);font-size:12px;line-height:1.9}.tiny{font-size:11px;color:var(--muted);line-height:1.9}.topbar{height:88px;padding:0 4%;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:17px;font-weight:800;letter-spacing:-.6px}.brand small{display:block;color:#8a938b;font-size:8px;letter-spacing:2px;font-weight:600;margin-top:0}.brand-icon{height:41px;width:41px;border-radius:12px;background:var(--dark);display:grid;place-items:center;color:#eee5bb;font-size:28px;font-weight:400}.header-right{display:flex;align-items:center;gap:24px;font-size:11px;color:var(--muted)}.world{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:20px;padding:5px 12px;color:#52655b;font-size:11px}.world i{height:6px;width:6px;background:#65a57b;border-radius:50%}.layout{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1480px;margin:auto}.sidebar{padding:40px 24px 32px 30px;border-right:1px solid var(--border);background:#f9faf6;align-self:start;min-height:calc(100vh - 88px);position:sticky;top:0}.section-kicker{color:#7e9481;font-size:9px;font-weight:800;letter-spacing:1.7px}.sidebar h2{font-size:19px;letter-spacing:-.7px;margin:7px 0 10px}.period{display:flex;justify-content:space-between;align-items:center;background:#ecf0e8;border-radius:10px;padding:12px 15px;margin:24px 0 19px;font-size:11px;color:#778174}.period strong{font-size:24px;line-height:1;color:var(--dark)}.period strong span{font-size:12px;margin-left:4px;font-weight:500}.field{display:block;font-size:11px;font-weight:500;color:#69786d;margin:15px 0}.input-unit{position:relative;display:flex;align-items:center;margin-top:7px}.input-unit input{width:100%;font-size:14px;font-weight:600;padding-right:58px;height:43px}.input-unit>span{position:absolute;right:12px;font-size:10px;color:#8b968d;pointer-events:none}.divider{height:1px;background:var(--border);margin:25px 0 20px}.toggle-row{display:flex;align-items:center;justify-content:space-between;cursor:pointer;position:relative}.toggle-row strong{font-size:12px;font-weight:600}.toggle-row small{display:block;font-size:10px;color:#8b948b;margin-top:3px}.toggle-row input{position:absolute;right:0;width:38px;height:23px;opacity:0;cursor:pointer}.toggle{width:34px;height:20px;background:#d3dbd0;border-radius:20px;position:relative;pointer-events:none}.toggle:after{content:'';position:absolute;top:3px;left:3px;height:14px;width:14px;background:white;border-radius:50%;box-shadow:0 1px 2px #0001;transition:transform .2s}.toggle-row input:checked+.toggle{background:var(--green)}.toggle-row input:checked+.toggle:after{transform:translateX(14px)}.toggle-row input:focus-visible+.toggle{outline:3px solid #a6c3aa;outline-offset:3px}.fatigue-total{display:flex;flex-direction:column;background:var(--dark);color:white;border-radius:12px;padding:18px;margin-top:25px}.fatigue-total>span{color:#b7c8bc;font-size:11px}.fatigue-total strong{font-size:32px;letter-spacing:-1px;font-weight:600;line-height:1.6}.fatigue-total small{font-size:10px;color:#9fb8a6}.sidebar-note{display:flex;gap:8px;margin-top:19px;color:#939b8b;font-size:10px;line-height:1.9}.sidebar-note>span{font-size:14px}.text-button{background:none;padding:0;color:#959c91;text-decoration:underline;text-underline-offset:4px;font-size:10px;margin-top:30px}main{padding:34px 36px 0;min-width:0}.hero{display:flex;align-items:center;justify-content:space-between;min-height:191px;gap:20px;padding:5px 5px 20px}.hero .section-kicker{color:#839b86}.hero h1{font-size:35px;letter-spacing:-1.8px;line-height:1.4;font-weight:800;margin:10px 0 12px}.hero p{font-size:12px;color:#838c82;letter-spacing:-.3px}.hero-art{width:230px;flex-shrink:0;position:relative;height:170px}.orbit{position:absolute;width:160px;height:160px;border-radius:50%;background:#e6eee0;top:2px;left:30px}.orbit:before{content:'';position:absolute;inset:-9px;border:1px dashed #d5e1cd;border-radius:50%;transform:rotate(-15deg)}.bottle{position:absolute;background:#fcfff8bb;border:2px solid #8eaa85;box-shadow:inset 0 0 0 4px #ffffffa1,5px 6px 0 #193c3110;border-radius:20px 20px 26px 26px;width:65px;height:86px;transform:rotate(-13deg);top:51px;left:52px}.bottle:before{content:'';position:absolute;width:25px;height:30px;border:2px solid #8eaa85;border-bottom:0;top:-27px;left:17px;background:#f2f6eb;border-radius:4px}.bottle:after{content:'';position:absolute;width:32px;height:10px;top:-32px;left:13px;background:#bba47b;border:2px solid #9d8a65;border-radius:3px}.bottle div{position:absolute;inset:33px 5px 5px;border-radius:8px 8px 21px 21px;background:#9cbd71}.bottle div:after{content:'✦';position:absolute;left:18px;top:0;color:#eef5d4;font-size:22px}.b2{left:116px;top:70px;transform:rotate(13deg);width:55px;height:72px;border-color:#bba473}.b2:before{left:12px;border-color:#bba473}.b2:after{left:8px}.b2 div{background:#ddbf73;inset:27px 5px 5px}.b2 div:after{left:13px;font-size:18px}.spark{position:absolute;color:#91a96c}.s1{font-size:26px;top:12px;left:165px}.s2{font-size:19px;left:20px;top:108px}.art-label{position:absolute;left:55px;bottom:-8px;color:#92a286;font-size:8px;letter-spacing:2px}.snapshot{display:flex;align-items:center;gap:7px;color:#8a9386;font-size:10px;padding:8px 3px 17px}.snapshot strong{font-weight:500}.snapshot-dot{width:5px;height:5px;background:#afbc9e;border-radius:50%;flex-shrink:0}.summary{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:14px;margin-bottom:26px}.summary-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;min-height:122px;display:flex;flex-direction:column}.summary-card:first-child{background:#edf3e8;border-color:#dce5d5}.summary-label{font-size:10px;color:#8c9887;display:flex;align-items:center;gap:7px}.summary-card strong{font-size:26px;letter-spacing:-1px;font-weight:700;line-height:1.7;white-space:nowrap}.summary-card small{font-size:10px;color:#8e9888;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.summary-card:first-child strong{color:var(--green)}.workspace{background:#fff;border:1px solid var(--border);border-radius:17px;overflow:hidden}.workspace-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);padding:0 22px}.tabs{display:flex;gap:26px}.tabs button{position:relative;background:transparent;color:#9ba198;font-size:13px;font-weight:600;min-height:64px;padding:0}.tabs button.active{color:var(--dark)}.tabs button.active:after{content:'';position:absolute;bottom:-1px;height:3px;background:var(--dark);border-radius:2px;left:0;right:0}.tabs button span{font-size:9px;background:#f1f3ed;border-radius:8px;padding:1px 6px;margin-left:4px}.secondary-button{border:1px solid var(--border);border-radius:7px;font-size:11px;color:#75816f;background:white;padding:7px 11px}.table-toolbar{padding:18px 22px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}.table-toolbar p{font-size:10px;color:#939a8c}.table-toolbar p strong{font-weight:500;color:#677b65}.table-toolbar>div{display:flex;gap:6px}.sale-assumption{font-size:10px;margin:0 22px 16px;color:#949987}.sale-assumption>span{display:inline-block;color:#8b855e;background:#f6f3e8;padding:2px 6px;border-radius:4px;margin-right:5px;font-weight:500}.results-head,.potion-row{display:grid;grid-template-columns:minmax(170px,1.8fr) minmax(115px,1fr) minmax(74px,.7fr) minmax(145px,1.2fr) 26px;align-items:center;gap:12px;padding:12px 22px}.results-head{background:#fafbf8;font-size:10px;color:#9aa28f;border-top:1px solid #f1f2ed;border-bottom:1px solid #eef0e8;min-height:40px}.results-head span:nth-child(n+2){text-align:right}.results-head small{font-size:8px;opacity:.8}.potion-item{border-bottom:1px solid #edf0e9}.potion-item:last-child{border:0}.potion-row{min-height:98px}.potion-name{display:flex;align-items:center;gap:10px;min-width:0}.mini-bottle{width:31px;height:34px;border:1px solid color-mix(in srgb,var(--potion) 70%,white);border-radius:8px 8px 12px 12px;background:color-mix(in srgb,var(--potion) 13%,white);flex-shrink:0;position:relative;display:grid;place-items:center;margin-top:7px}.mini-bottle:before{content:'';position:absolute;top:-7px;width:11px;height:7px;border-radius:3px 3px 0 0;background:color-mix(in srgb,var(--potion) 50%,white);border:1px solid color-mix(in srgb,var(--potion) 70%,white)}.mini-bottle:after{content:'✦';color:var(--potion);font-size:16px}.potion-name h3{font-size:12px;font-weight:600;line-height:1.65;letter-spacing:-.4px;word-break:keep-all}.potion-meta{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:4px;font-size:9px;color:#9ca392}.recipe-tag{background:#f4f5f0;border-radius:3px;padding:0 4px;font-size:8px}.price-input{width:100%;text-align:right;font-size:12px;font-weight:500;padding:7px 9px;border-color:#e9ede4;border-radius:6px;background:#fdfefa}.production{text-align:right;font-variant-numeric:tabular-nums;font-size:12px;color:#54664f}.production small{display:block;font-size:9px;color:#a2a996;margin-top:3px}.profit-cell{text-align:right;min-width:0}.profit-cell strong{display:block;font-size:14px;letter-spacing:-.4px;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:700}.positive{color:var(--green)}.negative{color:var(--red)}.unknown{color:#9c9586;font-size:11px!important}.profit-cell small{font-size:9px;color:#a0a68f;display:block;margin-top:4px}.expand{background:#f6f8f1;border-radius:7px;color:#89957d;font-size:14px;height:28px;width:26px;padding:0}.expand[aria-expanded=true]{background:#e9f0e3;color:var(--dark)}.detail{background:#f9fbf6;padding:22px;border-top:1px solid #edf0e8}.detail-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.detail-title strong{font-size:12px;color:#527047}.detail-title span{font-size:10px;color:#8e9b85}.detail-controls{display:grid;grid-template-columns:.7fr .7fr 1fr 1.2fr;gap:12px;margin-bottom:17px}.detail-controls label{font-size:10px;color:#88967e}.detail-controls input,.detail-controls select{width:100%;margin-top:5px;font-size:12px;padding:8px 10px;height:37px}.detail-controls .check-owned{display:flex;align-items:center;gap:7px;margin:0;height:24px;grid-column:1/-1;color:#6b7c60}.check-owned input{width:14px;height:14px;padding:0;accent-color:var(--green);margin:0}.detail-note{font-size:10px;background:#f2f2e8;color:#94916d;border-radius:7px;padding:9px 12px;margin-bottom:16px;line-height:1.8}.bom{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:11px}.bom th{font-weight:400;font-size:9px;color:#96a08b;text-align:right;padding:0 0 7px;border-bottom:1px solid #e4e9dc}.bom th:first-child{text-align:left}.bom td{padding:8px 0;border-bottom:1px solid #eaf0e2;text-align:right;color:#62775a}.bom td:first-child{text-align:left}.bom .qty-input{width:60px;padding:3px 6px;font-size:11px;text-align:right;background:white}.bom .bom-price{width:110px;padding:4px 6px;font-size:11px;text-align:right;background:white}.bom small{color:#a1aa97;font-size:9px}.cost-lines{display:grid;grid-template-columns:1fr 1fr;gap:6px 36px;margin-top:18px;font-size:11px;color:#8b9880}.cost-line{display:flex;justify-content:space-between;gap:10px;padding:3px 0;align-items:center}.cost-line strong{font-weight:500;font-variant-numeric:tabular-nums;color:#5d7153}.cost-total{grid-column:1/-1;border-top:1px solid #dfe6d6;margin-top:7px;padding:13px 0 0;display:flex;align-items:center;justify-content:space-between}.cost-total>div>span{display:block;color:#4b6840;font-weight:600;font-size:12px}.cost-total small{font-size:9px;color:#a2ad94}.cost-total strong{font-size:23px;letter-spacing:-.7px}.detail-foot{font-size:10px;color:#a0aa94;line-height:1.8;margin-top:13px}.detail-missing{margin-top:12px;padding:10px 12px;border:1px dashed #cfcab5;border-radius:6px;color:#94865e;font-size:11px}.materials-intro{display:flex;justify-content:space-between;align-items:center;padding:26px 22px 18px;gap:20px}.materials-intro h2{font-size:17px;letter-spacing:-.5px}.materials-intro p{font-size:10px;color:#969f8d;margin-top:6px;max-width:420px;line-height:1.9}.search{display:flex;gap:7px;align-items:center;min-width:160px;border:1px solid var(--border);border-radius:8px;padding:0 10px;color:#93a185}.search input{border:0;padding:9px 0;font-size:11px;width:120px}.search input:focus{outline:0}.search:focus-within{outline:2px solid #559e7f}.price-guidance{margin:0 22px 20px;background:#f7f9f3;border-radius:8px;padding:10px 13px;color:#8a997c;font-size:10px;line-height:1.9}#material-grid{padding:0 22px 24px}.material-heading{display:flex;gap:9px;align-items:center;margin:20px 0 12px;font-size:12px;font-weight:600;color:#596f4c}.material-heading>span{font-size:9px;font-weight:400;color:#a1ae96}.materials-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.material-card{border:1px solid #e8eddf;border-radius:10px;padding:13px;background:#fff}.material-card.missing-card{background:#fffcf6;border-color:#e7dfcc}.material-card label{display:block;font-size:11px;font-weight:500;letter-spacing:-.2px;color:#697d5b;margin-bottom:9px}.material-card input{width:100%;font-size:13px;font-weight:500;padding:9px 11px;text-align:right;border-color:#e9eddf}.material-card small{display:block;color:#a0ad92;font-size:9px;text-align:right;margin-top:5px;min-height:15px}.material-card.missing-card small{color:#b19f76}.method{margin:22px 0;font-size:11px;color:#96a086;line-height:1.9}.method summary{cursor:pointer;color:#899879;font-size:11px;padding:5px 0}.method>div{padding:13px 16px;border:1px solid #e2e9da;border-radius:8px;margin-top:9px;background:#fafbf8}.method p+p{margin-top:10px}.method strong{font-weight:500}.source-links a{text-decoration:underline;text-underline-offset:3px}footer{display:flex;gap:15px;align-items:center;justify-content:space-between;font-size:9px;color:#adb5a1;margin-top:25px;padding:19px 0 23px;border-top:1px solid #e3e8db}footer>span:first-child{font-weight:700;color:#8d9c7e}footer>span:last-child{letter-spacing:1.5px;font-size:8px}.empty{text-align:center;padding:40px;color:#9aaa8e}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}#toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:var(--dark);color:#eef6e8;font-size:12px;border-radius:10px;padding:12px 20px;box-shadow:0 6px 25px #203b3220;z-index:20}dialog{border:1px solid var(--border);border-radius:18px;padding:28px;max-width:420px;width:90%;color:var(--ink)}dialog::backdrop{background:#13291e55;backdrop-filter:blur(3px)}dialog h2{font-size:20px}dialog p{font-size:12px;color:var(--muted);margin:12px 0 25px}dialog form>div{display:flex;gap:9px;justify-content:flex-end}.primary-button{background:var(--green);color:white;border-radius:7px;padding:8px 18px;font-size:12px}
+@media(min-width:1400px){main{padding:42px 45px 0}.layout{grid-template-columns:255px minmax(0,1fr)}.sidebar{padding-left:38px;padding-right:30px}.hero h1{font-size:39px}.potion-name h3{font-size:13px}.potion-row{min-height:99px}.profit-cell strong{font-size:16px}}
+@media(max-width:1100px){.layout{grid-template-columns:210px minmax(0,1fr)}.sidebar{padding:30px 18px}.hero-art{width:180px;transform:scale(.9);transform-origin:right center}main{padding:27px 22px 0}.hero h1{font-size:31px}.hero p{font-size:11px}.results-head,.potion-row{grid-template-columns:minmax(135px,1.5fr) minmax(100px,1fr) 65px minmax(120px,1fr) 24px;gap:8px;padding-left:16px;padding-right:16px}.potion-name{gap:8px}.mini-bottle{width:25px;height:29px}.profit-cell strong{font-size:12px}.summary{gap:10px}.summary-card{padding:15px;min-height:116px}.summary-card strong{font-size:22px}.potion-name h3{font-size:11px}.table-toolbar{align-items:flex-start}.table-toolbar p{max-width:180px}.materials-group{grid-template-columns:repeat(2,minmax(0,1fr))}.materials-intro{align-items:flex-start;flex-direction:column}.search{width:100%}.search input{width:100%}}
+@media(max-width:850px){.topbar{height:75px;padding:0 22px}.header-right{gap:10px}#save-status{display:none}.layout{display:block}.sidebar{position:static;border-right:0;border-bottom:1px solid var(--border);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:0 20px;min-height:0}.sidebar>.section-kicker,.sidebar>h2,.sidebar>.muted,.sidebar>.period,.sidebar>.divider,.sidebar>.sidebar-note,.sidebar>.text-button{display:none}.sidebar .field{margin:0 0 12px}.sidebar .toggle-row{grid-column:1;align-self:center}.sidebar #recovery-fields{grid-column:1/-1;grid-row:3;background:#f1f5eb;padding:12px;border-radius:8px;display:flex;align-items:center;gap:15px;margin-top:12px}.sidebar #recovery-fields .field{margin:0;min-width:160px;max-width:230px}.sidebar #recovery-fields .tiny{margin:0}.fatigue-total{grid-column:2;grid-row:2;margin:0;padding:12px 15px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 10px}.fatigue-total strong{grid-column:2;grid-row:1/3;font-size:27px}.fatigue-total small{font-size:9px}.fatigue-total>span{font-size:10px}main{padding:24px 22px 0}.hero{min-height:170px}.hero-art{width:220px;transform:scale(.85)}.summary{margin-bottom:22px}.results-head,.potion-row{grid-template-columns:minmax(160px,1.5fr) minmax(120px,1fr) 80px minmax(140px,1.1fr) 26px;padding-left:22px;padding-right:22px}.potion-name h3{font-size:12px}.profit-cell strong{font-size:14px}.table-toolbar p{max-width:none}.materials-group{grid-template-columns:repeat(3,minmax(0,1fr))}.materials-intro{flex-direction:row}.detail-controls{grid-template-columns:1fr 1fr 1fr 1.2fr}}
+@media(max-width:650px){.topbar{padding:0 18px}.brand{font-size:15px;gap:8px}.brand-icon{width:36px;height:36px;font-size:25px}.brand small{font-size:7px;letter-spacing:1.4px}.world{font-size:9px;padding:4px 9px}.sidebar{padding:18px;gap:0 14px}.sidebar .input-unit input{font-size:13px}.fatigue-total{padding:10px}.fatigue-total strong{font-size:24px}.fatigue-total small{font-size:8px}.toggle-row small{font-size:9px}.toggle-row strong{font-size:11px}.toggle{width:32px;flex-shrink:0}.toggle-row{gap:8px}main{padding:25px 13px 0}.hero{padding:0 7px 18px;min-height:159px;gap:0}.hero h1{font-size:28px;line-height:1.45;letter-spacing:-1.2px;margin:8px 0 11px}.hero p{max-width:225px;font-size:10px;word-break:keep-all}.hero .section-kicker{font-size:7px;letter-spacing:1.2px}.hero-art{width:110px;transform:scale(.63);transform-origin:right center;height:150px;margin-left:-40px;margin-right:2px}.orbit{left:-25px}.bottle{left:-5px}.b2{left:61px}.s1{left:109px}.s2{left:-34px}.art-label{left:-4px;white-space:nowrap;bottom:-21px}.snapshot{font-size:9px;padding:2px 5px 15px;align-items:flex-start;gap:6px}.snapshot-dot{margin-top:6px}.snapshot p{line-height:1.9}.summary{grid-template-columns:1fr 1fr;gap:9px}.summary-card:first-child{grid-column:1/-1;min-height:105px;padding:14px 17px;position:relative}.summary-card:first-child strong{font-size:28px}.summary-card:first-child small{position:absolute;right:17px;bottom:21px;font-size:10px;max-width:45%}.summary-card{padding:13px 15px;min-height:106px;border-radius:12px}.summary-card strong{font-size:24px}.summary-label{font-size:10px}.summary-card small{font-size:9px}.workspace{border-radius:13px}.workspace-top{padding:0 15px}.tabs{gap:20px}.tabs button{font-size:12px;min-height:57px}.tabs button span{font-size:8px;margin-left:2px}.secondary-button{font-size:10px;padding:6px 8px}.table-toolbar{padding:15px 15px 11px;align-items:center;flex-wrap:wrap;gap:9px}.table-toolbar p{font-size:9px}.table-toolbar select{font-size:10px;padding:6px 22px 6px 7px}.table-toolbar>div{width:100%;justify-content:flex-end}.sale-assumption{margin:0 15px 14px;font-size:9px;line-height:1.9}.results-head{display:none}.potion-row{display:grid;grid-template-columns:minmax(0,1fr) 130px 23px;gap:6px 9px;padding:18px 15px;min-height:126px;position:relative}.potion-name{grid-column:1;grid-row:1/3;align-self:start;margin-top:5px;gap:9px}.potion-name h3{font-size:12px}.mini-bottle{width:25px;height:30px}.potion-meta{font-size:8px;gap:4px;line-height:1.8}.price-input{grid-column:2;grid-row:1;font-size:12px;padding:6px 8px}.production{grid-column:1;grid-row:3;text-align:left;margin-left:34px;font-size:10px;margin-top:2px}.production small{display:inline;font-size:8px;margin-left:7px}.profit-cell{grid-column:2;grid-row:2/4;align-self:end}.profit-cell strong{font-size:13px}.profit-cell small{font-size:8px}.expand{grid-column:3;grid-row:1/4;width:23px}.detail{padding:18px 15px}.detail-title{align-items:flex-start;gap:10px}.detail-title strong{font-size:11px}.detail-title span{font-size:9px;text-align:right}.detail-controls{grid-template-columns:1fr 1fr;gap:10px}.detail-controls input,.detail-controls select{font-size:11px}.detail-note{font-size:9px}.bom{font-size:9px}.bom th{font-size:8px}.bom td:first-child{max-width:100px;word-break:keep-all;padding-right:8px}.bom .qty-input{width:40px;font-size:10px}.bom .bom-price{width:85px;font-size:10px}.bom small{font-size:8px;display:block}.cost-lines{grid-template-columns:1fr;gap:3px}.cost-line{font-size:10px}.cost-total strong{font-size:21px}.detail-foot{font-size:9px}.materials-intro{padding:21px 15px 16px;flex-direction:column;gap:14px}.materials-intro h2{font-size:16px}.materials-intro p{font-size:10px}.price-guidance{margin:0 15px 16px;font-size:9px}#material-grid{padding:0 15px 18px}.materials-group{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.material-card{padding:11px}.material-card label{font-size:10px;min-height:32px;line-height:1.7}.material-card input{font-size:12px;padding:8px}.material-card small{font-size:8px}.method{font-size:10px;margin:18px 6px}.method summary{font-size:10px}footer{margin:19px 6px 0;flex-wrap:wrap;gap:3px;font-size:8px;justify-content:flex-start}footer>span:last-child{display:none}footer p{flex-basis:100%;margin-top:4px}#toast{width:90%;text-align:center;font-size:11px}.unknown{font-size:10px!important}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+#results-list{display:flex;flex-direction:column}.hero{overflow:hidden}#reset-mobile{display:none}@media(max-width:850px){#reset-mobile{display:inline-block;margin:4px 6px 0}}
+
+
+.bom small{display:block;margin-top:2px}
+
+
+@media(min-width:851px){.sidebar{max-height:100vh;overflow-y:auto}}.sidebar::-webkit-scrollbar{width:4px}.sidebar::-webkit-scrollbar-thumb{background:#dce3d4;border-radius:4px}
+
+</style>
+
+</head>
+<body id="top">
+  <header class="topbar"><a href="#top" class="brand"><span class="brand-icon" aria-hidden="true">⚗</span><span>연금술 연구실<small>MAPLE ALCHEMY</small></span></a><div class="header-right"><span class="world"><i></i> 스카니아 · 명장</span><span id="save-status" role="status">브라우저에 자동 저장</span></div></header>
+  <div class="layout">
+    <aside class="sidebar" aria-label="계산 조건">
+      <div class="section-kicker">CRAFTING PLAN</div>
+      <h2>제작 조건</h2><p class="muted">한 가지 비약에 이틀의 피로도를<br>모두 사용했을 때를 비교합니다.</p>
+      <div class="period"><span>계산 기간</span><strong>2<span>일</span></strong></div>
+      <label class="field">하루 기본 피로도<div class="input-unit"><input id="daily-fatigue" data-setting="dailyFatigue" type="text" inputmode="numeric" aria-label="하루 기본 피로도"><span>피로도</span></div></label>
+      <label class="field">판매 수수료<div class="input-unit"><input id="fee" data-setting="fee" type="text" inputmode="decimal" aria-label="판매 수수료"><span>%</span></div></label>
+      <div class="divider"></div>
+      <label class="toggle-row"><span><strong>피로회복제 사용</strong><small>하루 5개 · 피로도 +350</small></span><input type="checkbox" id="recovery" role="switch" aria-label="피로회복제 사용"><span class="toggle" aria-hidden="true"></span></label>
+      <div id="recovery-fields" hidden><label class="field">회복제 1개 매입가<div class="input-unit"><input id="recovery-price" data-setting="recoveryPrice" type="text" inputmode="numeric" placeholder="가격 입력" aria-label="피로회복제 한 개 가격"><span>메소</span></div></label><p class="tiny">이틀간 10개 비용을 차감합니다.<br>보유·무료 사용이라면 0을 입력하세요.</p></div>
+      <div class="fatigue-total"><span>이틀 총 피로도</span><strong id="total-fatigue">1,000</strong><small id="fatigue-equation">500 × 2일</small></div>
+      <div class="sidebar-note"><span aria-hidden="true">ⓘ</span><p>24시간 레시피는 자정 초기화 전후로 이틀치를 제작하는 조건입니다. 유효 시간 안에 제작을 마쳐야 합니다.</p></div>
+      <button id="reset" class="text-button">초기 가격과 조건으로 되돌리기 ↺</button>
+    </aside>
+    <main>
+      <section class="hero"><div><div class="section-kicker">TWO-DAY PROFIT CALCULATOR</div><h1>만들기 전에,<br>남는 메소부터.</h1><p>재료 가격을 바꾸면 15종의 제작 수익을 바로 계산합니다.</p></div><div class="hero-art" aria-hidden="true"><div class="orbit"></div><div class="bottle b1"><div></div></div><div class="bottle b2"><div></div></div><span class="spark s1">✦</span><span class="spark s2">+</span><span class="art-label">PRICE → PROFIT</span></div></section>
+      <div class="snapshot"><span class="snapshot-dot"></span><p>2026.10.15 확인 단가를 넣어 둔 예시입니다. <strong>실시간 시세 연동이 아닙니다.</strong></p></div>
+      <section id="summary" class="summary" aria-label="계산 요약"></section>
+      <section class="workspace">
+        <div class="workspace-top"><nav class="tabs" role="tablist" aria-label="계산기 메뉴"><button id="tab-results" class="active" role="tab" aria-selected="true" aria-controls="results-panel">수익 비교 <span>15</span></button><button id="tab-materials" role="tab" aria-selected="false" aria-controls="materials-panel">재료 가격 <span>23</span></button></nav><button id="download" class="secondary-button">결과 CSV ↓</button></div>
+        <div id="results-panel" role="tabpanel" aria-labelledby="tab-results">
+          <div class="table-toolbar"><p>각 행은 <strong>독립 계산</strong>이며, 수익을 합산하지 않습니다.</p><div><label class="sr-only" for="group-filter">비약 종류</label><select id="group-filter"><option value="all">전체 종류</option><option>사냥</option><option>보스</option><option>능력치</option></select><label class="sr-only" for="sort">정렬</label><select id="sort"><option value="profit">순이익 높은 순</option><option value="roi">수익률 높은 순</option><option value="default">기본 순서</option></select></div></div>
+          <div class="sale-assumption"><span>전량 판매 가정</span> 판매되지 않은 재고와 대량 매입 시 가격 상승은 반영하지 않습니다.</div>
+          <div class="results-head"><span>비약 / 제작 조건</span><span>개당 판매가 <small>메소</small></span><span>이틀 생산량</span><span>이틀 예상 순이익</span><span></span></div>
+          <div id="results-list"></div>
+        </div>
+        <div id="materials-panel" role="tabpanel" aria-labelledby="tab-materials" hidden>
+          <div class="materials-intro"><div><h2>매입할 가격을 입력하세요</h2><p>이전 단계 물약도 경매장에서 사는 조건입니다. 같은 재료는 모든 비약에 함께 반영됩니다.</p></div><label class="search"><span aria-hidden="true">⌕</span><input id="material-search" type="search" placeholder="재료 이름 검색" aria-label="재료 이름 검색"></label></div>
+          <div class="price-guidance">단위는 모두 <strong>1개당 메소</strong>입니다. 대량 구매라면 예상 평균 매입가를 입력하세요. 빈칸은 미확인, 0은 무료로 계산합니다.</div>
+          <div id="material-grid"></div>
+          <p id="material-empty" class="empty" hidden>검색한 재료가 없습니다.</p>
+        </div>
+      </section>
+      <details class="method"><summary>계산 방식과 데이터 기준</summary><div><p><strong>제작 횟수</strong> = ⌊(하루 기본 피로도 + 회복제 추가 피로도) ÷ 1회 제작 피로도⌋ × 2일</p><p><strong>이틀 순이익</strong> = 판매가 × 생산량 × (1 − 수수료율) − 전체 재료비 − 레시피 비용 − 회복제 비용</p><p>24시간·영구 레시피는 신규 구입 시 1장 값을 반영합니다. 보유 체크 시 해당 비용은 0입니다. 1회 소모 레시피는 제작 횟수만큼 계산합니다. 각 행은 해당 비약만 제작하는 대안이며, 공통 레시피를 쓰는 비약끼리도 별도 비교합니다.</p><p>재료와 판매가는 대화 중 확인한 단가 예시로, 매물 수량과 거래 성사 여부를 보장하지 않습니다. 피로도는 일반 물약 5, 고급 비약 10을 적용했습니다. 소형 고농축 경축비의 피로도 5는 추정값이며 펼친 계산에서 수정할 수 있습니다. 모든 제작 수량·재료 수량도 수정할 수 있습니다.</p><p>수수료의 메소 단위 반올림 차이로 실제 정산액과 소액 차이가 날 수 있습니다. 시간당 자연 회복과 부가 제작 보너스는 반영하지 않습니다. 입력값은 현재 브라우저에만 저장됩니다.</p><p class="source-links">제작 정보 참고: <a href="https://maple.inven.co.kr/dataninfo/item/detail.php?code=2003526" target="_blank" rel="noopener">전설의 영웅 비약</a> · <a href="https://1-start.tistory.com/221" target="_blank" rel="noopener">경험 축적의 비약</a> · <a href="https://maple.inven.co.kr/dataninfo/item/detail.php?code=2004119&retype=5" target="_blank" rel="noopener">향상된 마력의 물약</a> · <a href="https://maplestory.nexon.com/news/update/722" target="_blank" rel="noopener">제작 대기시간 변경</a></p></div></details>
+      <button id="reset-mobile" class="text-button">초기 가격과 조건으로 되돌리기 ↺</button>
+      <footer><span>연금술 연구실</span><p>메이플스토리 비공식 개인용 계산기 · 가격을 확인하고 제작하세요.</p><span>MESO, WELL SPENT.</span></footer>
+    </main>
+  </div>
+  <div id="toast" role="status" hidden></div>
+  <dialog id="reset-dialog"><form method="dialog"><h2>입력값을 초기화할까요?</h2><p>직접 입력한 가격과 제작 조건을 초기 예시로 되돌립니다.</p><div><button class="secondary-button" value="cancel">취소</button><button class="primary-button" value="reset">초기화</button></div></form></dialog>
+<script>(()=>{
+'use strict';
+const VERSION = 1;
+const PRICE_DATE = '2026-10-15';
+const MATERIALS = [
+  ['seed', '쥬니퍼베리 씨앗 오일', 4466666, '원재료'],
+  ['flower', '쥬니퍼베리 꽃 오일', 16666, '원재료'],
+  ['hys', '히솝 꽃 오일', 9111, '원재료'],
+  ['bright', '영롱한 황혼의 정수', 7660000, '원재료'],
+  ['upper', '상급 주문의 정수', 79900, '원재료'],
+  ['magic', '마력 결정', 50, '원재료'],
+  ['top', '최상급 아이템 결정', 300000, '원재료'],
+  ['stone', '현자의 돌', 1100, '원재료'],
+  ['bottle', '최고급 포션 빈 병', 800, '원재료'],
+  ['lithium', '리튬', 69000, '원재료'],
+  ['wisdom', '지혜의 크리스탈', 666666, '원재료'],
+  ['luck', '행운의 크리스탈', 30000, '원재료'],
+  ['baseHero', '대영웅의 비약', 299944, '이전 단계 물약'],
+  ['baseBoss', '보스 킬러의 비약', 19999, '이전 단계 물약'],
+  ['basePenetration', '관통의 비약', 279999, '이전 단계 물약'],
+  ['baseBless', '대축복의 비약', 277777, '이전 단계 물약'],
+  ['baseSTR', '10단계 힘의 물약', null, '이전 단계 물약'],
+  ['baseINT', '10단계 지능의 물약', 250000, '이전 단계 물약'],
+  ['baseDEX', '10단계 민첩의 물약', 197775, '이전 단계 물약'],
+  ['baseLUK', '10단계 행운의 물약', 168000, '이전 단계 물약'],
+  ['baseATT', '5단계 공격력의 물약', null, '이전 단계 물약'],
+  ['baseMAGIC', '5단계 마력의 물약', null, '이전 단계 물약'],
+  ['smallEXP', '소형 경험 축적의 비약', 799999, '이전 단계 물약'],
+].map(([id, name, price, group]) => ({id, name, price, group}));
+
+const potion = (id, name, short, group, color, fatigue, output, sale, recipeType, recipePrice, ingredients, note = '') =>
+  ({id, name, short, group, color, fatigue, output, sale, recipeType, recipePrice, ingredients, note});
+const high = base => ({[base]: 1, hys: 10, upper: 1, bright: 1});
+const POTIONS = [
+  potion('exp', '경험 축적의 비약', '경축비', '사냥', '#d6a548', 5, 3, 19450000, '24h', 9999, {seed: 10, top: 5, stone: 2, bottle: 1}, '거래량을 고려해 판매 가능한 수량부터 제작하세요.'),
+  potion('wealth', '재물 획득의 비약', '재획비', '사냥', '#56a889', 5, 3, 15499000, '24h', 10530000, {seed: 10, top: 3, stone: 1, bottle: 1}),
+  potion('smallWealth', '소형 재물 획득의 비약', '소재비', '사냥', '#6eb99a', 5, 6, 3999997, '24h', 10530000, {seed: 5, top: 2, stone: 1, bottle: 1}, '재물 획득의 비약과 같은 레시피를 사용합니다. 각 행은 한 종류만 제작하는 독립 비교입니다.'),
+  potion('legend', '전설의 영웅 비약', '전영비', '보스', '#e49c58', 5, 3, 1154299, '24h', 249999997, {flower: 10, top: 5, stone: 2, bottle: 1}),
+  potion('highHero', '고급 대영웅의 비약', '고대영', '보스', '#d77d79', 10, 2, 4749996, 'none', 0, high('baseHero')),
+  potion('highPenetration', '고급 관통의 비약', '고관통', '보스', '#b295d5', 10, 2, 4740000, 'none', 0, high('basePenetration')),
+  potion('highBoss', '고급 보스 킬러의 비약', '고보킬', '보스', '#a586c4', 10, 2, 4177777, 'none', 0, high('baseBoss')),
+  potion('highBless', '고급 대축복의 비약', '고대축', '보스', '#77a9cc', 10, 2, 4166666, 'none', 0, high('baseBless')),
+  potion('enhancedLUK', '향상된 10단계 행운의 물약', '향상 행운', '능력치', '#a58cce', 5, 5, 277767, 'permanent', 6397776, {baseLUK: 5, lithium: 1}),
+  potion('enhancedDEX', '향상된 10단계 민첩의 물약', '향상 민첩', '능력치', '#76ac8d', 5, 5, 223998, 'permanent', 90000000, {baseDEX: 5, lithium: 1}),
+  potion('enhancedINT', '향상된 10단계 지능의 물약', '향상 지능', '능력치', '#7c9dce', 5, 5, 344443, 'permanent', 24444444, {baseINT: 5, wisdom: 1}),
+  potion('enhancedSTR', '향상된 10단계 힘의 물약', '향상 힘', '능력치', '#d1847b', 5, 5, 344998, 'permanent', 9770000, {baseSTR: 5, wisdom: 1}),
+  potion('enhancedATT', '향상된 5단계 공격력의 물약', '향상 공격력', '능력치', '#cf9470', 5, 3, 1200000, 'permanent', 839999, {baseATT: 3, luck: 2}),
+  potion('enhancedMAGIC', '향상된 5단계 마력의 물약', '향상 마력', '능력치', '#7c97c8', 5, 3, 1422220, 'permanent', 980000, {baseMAGIC: 3, luck: 2}),
+  potion('concentratedEXP', '소형 고농축 경험 축적의 비약', '소형 고농축 경축비', '사냥', '#c1a14c', 5, 4, 4544444, 'single', 50, {smallEXP: 4, bright: 2, hys: 10, magic: 1000}, '피로도 5는 사용자 추정값입니다. 게임 제작 화면을 확인한 뒤 수정하세요. 레시피는 제작 1회마다 소모합니다.'),
+];
+const RECIPE_LABELS = {none: '레시피 불필요', '24h': '24시간', permanent: '영구', single: '1회 소모'};
+function defaultState() {
+  return {
+    version: VERSION,
+    settings: {dailyFatigue: 500, fee: 3, recovery: false, recoveryPrice: null},
+    prices: Object.fromEntries(MATERIALS.map(m => [m.id, m.price])),
+    potions: Object.fromEntries(POTIONS.map(p => [p.id, {
+      sale: p.sale, fatigue: p.fatigue, output: p.output, recipeType: p.recipeType,
+      recipePrice: p.recipePrice, owned: false, ingredients: {...p.ingredients},
+    }])),
+  };
+}
+
+function validPrice(value) {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 1e15;
+}
+function calculate(potion, state) {
+  const p = state.potions[potion.id];
+  const s = state.settings;
+  const missing = [];
+  const dailyFatigue = Number.isFinite(s.dailyFatigue) && s.dailyFatigue >= 0 ? s.dailyFatigue + (s.recovery ? 350 : 0) : null;
+  const fatigueValid = Number.isFinite(p.fatigue) && p.fatigue > 0 && Number.isInteger(p.fatigue);
+  const outputValid = Number.isInteger(p.output) && p.output > 0;
+  const dailyRuns = dailyFatigue === null || !fatigueValid ? 0 : Math.floor(dailyFatigue / p.fatigue);
+  const runs = dailyRuns * 2;
+  const units = runs * (outputValid ? p.output : 0);
+  if (dailyFatigue === null) missing.push('하루 피로도');
+  if (!fatigueValid) missing.push('제작 피로도');
+  if (!outputValid) missing.push('제작 수량');
+  if (!validPrice(p.sale)) missing.push('판매 단가');
+  if (typeof s.fee !== 'number' || !Number.isFinite(s.fee) || s.fee < 0 || s.fee >= 100) missing.push('판매 수수료');
+  let perCraftCost = 0;
+  const materials = Object.entries(p.ingredients).map(([id, quantity]) => {
+    const price = state.prices[id];
+    const known = validPrice(price) && Number.isInteger(quantity) && quantity > 0;
+    if (!known) missing.push(id);
+    const cost = known ? price * quantity * runs : null;
+    if (known) perCraftCost += price * quantity;
+    return {id, quantity, totalQuantity: quantity * runs, price, cost};
+  });
+  let recipeCount = 0;
+  if (runs > 0 && p.recipeType !== 'none') recipeCount = p.recipeType === 'single' ? runs : (p.owned ? 0 : 1);
+  if (!['none', '24h', 'permanent', 'single'].includes(p.recipeType)) missing.push('레시피 종류');
+  if (recipeCount && !validPrice(p.recipePrice)) missing.push('레시피 가격');
+  const recipeCost = recipeCount ? (validPrice(p.recipePrice) ? p.recipePrice * recipeCount : null) : 0;
+  const recoveryCount = s.recovery ? 10 : 0;
+  if (recoveryCount && !validPrice(s.recoveryPrice)) missing.push('피로회복제 가격');
+  const recoveryCost = recoveryCount ? (validPrice(s.recoveryPrice) ? s.recoveryPrice * recoveryCount : null) : 0;
+  const gross = validPrice(p.sale) ? units * p.sale : null;
+  const fee = gross === null || missing.includes('판매 수수료') ? null : gross * s.fee / 100;
+  const materialCost = materials.some(m => m.cost === null) ? null : perCraftCost * runs;
+  const cost = materialCost === null || recipeCost === null || recoveryCost === null ? null : materialCost + recipeCost + recoveryCost;
+  const net = missing.length ? null : gross - fee - cost;
+  const breakEvenSale = cost === null || units === 0 || missing.includes('판매 수수료') ? null : Math.ceil(cost / units / (1 - s.fee / 100));
+  return {id: potion.id, dailyFatigue, dailyRuns, runs, units, unusedFatigue: dailyFatigue === null ? 0 : dailyFatigue - dailyRuns * p.fatigue,
+    materials, perCraftCost: materialCost === null ? null : perCraftCost, materialCost, recipeCount, recipeCost, recoveryCount,
+    recoveryCost, gross, fee, cost, net, breakEvenSale, roi: net === null || !cost ? null : net / cost * 100, missing};
+}
+
+
+const KEY = 'maple-alchemy-calculator-v1';
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const fmt = n => n === null || !Number.isFinite(n) ? '—' : Math.round(n).toLocaleString('ko-KR');
+const inputValue = n => n === null ? '' : Number(n).toLocaleString('en-US', {maximumFractionDigits: 2});
+const esc = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const compact = n => {
+  if (n === null || !Number.isFinite(n)) return '가격 입력 필요';
+  const sign = n < 0 ? '−' : '';
+  const a = Math.abs(n);
+  if (a >= 1e8) return `${sign}${(a / 1e8).toLocaleString('ko-KR', {maximumFractionDigits: 2})}억 메소`;
+  if (a >= 1e4) return `${sign}${(a / 1e4).toLocaleString('ko-KR', {maximumFractionDigits: 2})}만 메소`;
+  return `${sign}${fmt(a)} 메소`;
+};
+const materialName = id => MATERIALS.find(m => m.id === id)?.name ?? id;
+const money = n => n === null ? '미입력' : `${fmt(n)} 메소`;
+let state = defaultState();
+let loaded = false;
+let storageAvailable = true;
+let activeTab = 'results';
+let openDetails = new Set();
+let toastTimer;
+try {
+  const saved = JSON.parse(localStorage.getItem(KEY));
+  if (saved?.version === VERSION && saved.settings && saved.prices && saved.potions) {
+    const numeric = x => x === null || validPrice(x);
+    for (const id of Object.keys(state.prices)) if (numeric(saved.prices[id])) state.prices[id] = saved.prices[id];
+    for (const k of ['dailyFatigue', 'fee', 'recoveryPrice']) if (numeric(saved.settings[k])) state.settings[k] = saved.settings[k];
+    state.settings.recovery = saved.settings.recovery === true;
+    for (const p of POTIONS) {
+      const v = saved.potions[p.id];
+      if (!v) continue;
+      for (const k of ['sale', 'fatigue', 'output', 'recipePrice']) if (numeric(v[k])) state.potions[p.id][k] = v[k];
+      if (Object.hasOwn(RECIPE_LABELS, v.recipeType)) state.potions[p.id].recipeType = v.recipeType;
+      state.potions[p.id].owned = v.owned === true;
+      for (const id of Object.keys(p.ingredients)) if (numeric(v.ingredients?.[id])) state.potions[p.id].ingredients[id] = v.ingredients[id];
+    }
+    loaded = true;
+  }
+} catch { storageAvailable = false; }
+
+function save() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(state));
+    storageAvailable = true;
+    $('#save-status').textContent = '✓ 이 브라우저에 저장됨';
+  } catch {
+    storageAvailable = false;
+    $('#save-status').textContent = '저장 불가 · 현재 화면에서만 유지';
+  }
+}
+function toast(message) {
+  clearTimeout(toastTimer);
+  $('#toast').textContent = message;
+  $('#toast').hidden = false;
+  toastTimer = setTimeout(() => { $('#toast').hidden = true; }, 3000);
+}
+function allResults() { return POTIONS.map(p => ({p, r: calculate(p, state)})); }
+function renderSummary() {
+  const rows = allResults();
+  const known = rows.filter(({r}) => r.net !== null);
+  const best = known.toSorted((a,b) => b.r.net - a.r.net)[0];
+  const fatigue = state.settings.dailyFatigue === null ? null : (state.settings.dailyFatigue + (state.settings.recovery ? 350 : 0)) * 2;
+  const bestText = best ? compact(best.r.net) : '가격 입력 필요';
+  $('#summary').innerHTML = `<article class="summary-card"><span class="summary-label">✦ 전량 판매 시 최대 예상 순이익</span><strong>${bestText}</strong><small>${best ? esc(best.p.short) : '미입력 항목을 채워 주세요'}</small></article>
+    <article class="summary-card"><span class="summary-label">이틀 제작에 쓸 피로도</span><strong>${fmt(fatigue)}<span style="font-size:12px;margin-left:5px;font-weight:400">피로도</span></strong><small>${state.settings.recovery ? '회복제 하루 5개 · 총 10개' : '회복제 사용 안 함'}</small></article>
+    <article class="summary-card"><span class="summary-label">계산 완료</span><strong>${known.length}<span style="font-size:14px;color:#b2baa6;margin-left:5px;font-weight:400">/ 15종</span></strong><small>${rows.length - known.length ? `${rows.length - known.length}종은 미입력 항목이 있습니다` : '모든 비약의 원가 입력 완료'}</small></article>`;
+  $('#total-fatigue').textContent = fmt(fatigue);
+  $('#fatigue-equation').textContent = `${state.settings.recovery ? '(' : ''}${fmt(state.settings.dailyFatigue)}${state.settings.recovery ? ' + 350)' : ''} × 2일`;
+}
+function priceField(attrs, value, label, classes = '') {
+  return `<input type="text" inputmode="numeric" ${attrs} value="${inputValue(value)}" placeholder="가격 입력" aria-label="${esc(label)}" class="${classes} ${value === null ? 'invalid' : ''}" autocomplete="off">`;
+}
+function renderRows() {
+  const filter = $('#group-filter').value;
+  const sort = $('#sort').value;
+  const rows = allResults().filter(({p}) => filter === 'all' || p.group === filter);
+  if (sort !== 'default') rows.sort((a,b) => {
+    const av = a.r[sort === 'roi' ? 'roi' : 'net'], bv = b.r[sort === 'roi' ? 'roi' : 'net'];
+    return av === null ? (bv === null ? 0 : 1) : bv === null ? -1 : bv - av;
+  });
+  $('#results-list').innerHTML = rows.map(({p, r}) => {
+    const v = state.potions[p.id];
+    const open = openDetails.has(p.id);
+    return `<article class="potion-item" data-item="${p.id}"><div class="potion-row">
+      <div class="potion-name"><div class="mini-bottle" style="--potion:${p.color}" aria-hidden="true"></div><div><h3>${p.name}</h3><div class="potion-meta"><span data-meta="${p.id}">피로도 ${v.fatigue ?? '—'} · ${v.output ?? '—'}개 제작</span><span class="recipe-tag" data-tag="${p.id}">${RECIPE_LABELS[v.recipeType]}</span></div></div></div>
+      ${priceField(`data-potion="${p.id}" data-prop="sale"`, v.sale, `${p.name} 개당 판매가`, 'price-input')}
+      <div class="production" data-production="${p.id}"></div><div class="profit-cell" data-profit="${p.id}"></div>
+      <button class="expand" data-expand="${p.id}" aria-label="${p.name} 계산 ${open ? '접기' : '펼치기'}" aria-expanded="${open}" aria-controls="detail-${p.id}">${open ? '−' : '+'}</button></div>
+      <div class="detail" id="detail-${p.id}" ${open ? '' : 'hidden'}>${open ? detailHTML(p, r) : ''}</div></article>`;
+  }).join('');
+  updateNumbers();
+}
+function detailHTML(p, r) {
+  const v = state.potions[p.id];
+  const fixed = v.recipeType === '24h' || v.recipeType === 'permanent';
+  return `<div class="detail-title"><strong>${p.short} · 계산 내역</strong><span data-daily="${p.id}"></span></div>
+    ${p.note ? `<p class="detail-note">${p.note}</p>` : ''}
+    <div class="detail-controls"><label>1회 제작 피로도${priceField(`data-potion="${p.id}" data-prop="fatigue"`, v.fatigue, `${p.name} 한 번 제작 피로도`)}</label><label>1회 완성 수량${priceField(`data-potion="${p.id}" data-prop="output"`, v.output, `${p.name} 한 번 완성 수량`)}</label>
+    <label>레시피 종류<select data-recipe-type="${p.id}" aria-label="${p.name} 레시피 종류">${Object.entries(RECIPE_LABELS).map(([type,label]) => `<option value="${type}" ${v.recipeType === type ? 'selected' : ''}>${label}</option>`).join('')}</select></label>
+    <label>레시피 1장 가격${priceField(`data-potion="${p.id}" data-prop="recipePrice" ${v.recipeType === 'none' || (fixed && v.owned) ? 'disabled' : ''}`, v.recipePrice, `${p.name} 레시피 한 장 가격`)}</label>
+    ${fixed ? `<label class="check-owned"><input type="checkbox" data-owned="${p.id}" ${v.owned ? 'checked' : ''}>${v.recipeType === '24h' ? '보유한 유효 레시피 사용' : '이미 배운 영구 레시피'} · 이번 구입비 0메소</label>` : ''}</div>
+    <table class="bom"><thead><tr><th>매입 재료</th><th>1회 수량</th><th>개당 가격</th><th>이틀 필요량 / 비용</th></tr></thead><tbody>${r.materials.map(m => `<tr><td>${materialName(m.id)}</td><td>${priceField(`data-quantity="${p.id}" data-material="${m.id}"`, m.quantity, `${p.name} 제작용 ${materialName(m.id)} 한 번 수량`, 'qty-input')}</td><td>${priceField(`data-price="${m.id}"`, m.price, `${p.name} 제작용 ${materialName(m.id)} 개당 가격`, 'bom-price')}</td><td data-bom="${p.id}-${m.id}"></td></tr>`).join('')}</tbody></table>
+    <div class="cost-lines"><div class="cost-line"><span>판매 대금</span><strong data-detail="${p.id}-gross"></strong></div><div class="cost-line"><span>판매 수수료 <span data-fee-label></span>%</span><strong data-detail="${p.id}-fee"></strong></div><div class="cost-line"><span>전체 재료 매입비</span><strong data-detail="${p.id}-materialCost"></strong></div><div class="cost-line"><span>레시피 <span data-rec-count="${p.id}"></span>장</span><strong data-detail="${p.id}-recipeCost"></strong></div><div class="cost-line"><span>피로회복제 <span data-recovery-count></span>개</span><strong data-detail="${p.id}-recoveryCost"></strong></div><div class="cost-line"><span>손익분기 판매 단가</span><strong data-detail="${p.id}-breakEvenSale"></strong></div>
+    <div class="cost-total"><div><span>이틀 예상 순이익</span><small data-equation="${p.id}"></small></div><strong data-detail-net="${p.id}"></strong></div></div>
+    <div class="detail-missing" data-missing="${p.id}" hidden></div><p class="detail-foot" data-detail-foot="${p.id}"></p>`;
+}
+function renderMaterials() {
+  $('#material-grid').innerHTML = ['원재료', '이전 단계 물약'].map(group => `<section data-material-section><h3 class="material-heading">${group}<span>${group === '이전 단계 물약' ? '직접 제작하지 않고 매입' : '평균 매입 단가'}</span></h3><div class="materials-group">${MATERIALS.filter(m => m.group === group).map(m => `<div class="material-card" data-material-card="${m.id}"><label for="material-${m.id}">${m.name}</label>${priceField(`id="material-${m.id}" data-price="${m.id}"`, state.prices[m.id], `${m.name} 개당 매입가`)}<small data-material-hint="${m.id}"></small></div>`).join('')}</div></section>`).join('');
+}
+function updateNumbers() {
+  renderSummary();
+  for (const {p, r} of allResults()) {
+    const production = $(`[data-production="${p.id}"]`);
+    if (production) {
+      production.innerHTML = `${fmt(r.units)}개<small>${fmt(r.runs)}회 제작</small>`;
+      const cell = $(`[data-profit="${p.id}"]`);
+      cell.innerHTML = r.net === null ? `<strong class="unknown">${r.missing.includes('피로회복제 가격') ? '회복제 가격 필요' : '미입력 항목 확인'}</strong><small>계산 내역에서 확인</small>` : `<strong class="${r.net >= 0 ? 'positive' : 'negative'}">${r.net > 0 ? '+' : ''}${fmt(r.net)}</strong><small>${compact(r.net)} · ${r.roi === null ? '수익률 —' : `${r.roi.toFixed(1)}%`}</small>`;
+      $(`[data-meta="${p.id}"]`).textContent = `피로도 ${state.potions[p.id].fatigue ?? '—'} · ${state.potions[p.id].output ?? '—'}개 제작`;
+      $(`[data-tag="${p.id}"]`).textContent = RECIPE_LABELS[state.potions[p.id].recipeType];
+    }
+    if (!openDetails.has(p.id) || !$(`[data-daily="${p.id}"]`)) continue;
+    $(`[data-daily="${p.id}"]`).textContent = `하루 ${fmt(r.dailyRuns)}회 × 2일 = ${fmt(r.runs)}회`;
+    for (const key of ['gross','fee','materialCost','recipeCost','recoveryCost','breakEvenSale']) $(`[data-detail="${p.id}-${key}"]`).textContent = money(r[key]);
+    $(`[data-rec-count="${p.id}"]`).textContent = fmt(r.recipeCount);
+    const net = $(`[data-detail-net="${p.id}"]`);
+    net.textContent = r.net === null ? '미입력 항목 확인' : `${fmt(r.net)} 메소`;
+    net.className = r.net === null ? 'unknown' : r.net >= 0 ? 'positive' : 'negative';
+    $(`[data-equation="${p.id}"]`).textContent = '판매 대금 − 수수료 − 재료비 − 레시피 − 회복제';
+    for (const m of r.materials) $(`[data-bom="${p.id}-${m.id}"]`).innerHTML = `${fmt(m.totalQuantity)}개<small>${money(m.cost)}</small>`;
+    const missing = $(`[data-missing="${p.id}"]`);
+    missing.hidden = !r.missing.length;
+    missing.textContent = `입력 필요: ${r.missing.map(materialName).join(', ')}`;
+    $(`[data-detail-foot="${p.id}"]`).textContent = `하루 남는 피로도 ${fmt(r.unusedFatigue)} · 개당 매입가로 전체 수량을 살 수 있고, 생산량 ${fmt(r.units)}개가 모두 입력한 가격에 판매된다고 가정합니다.${state.potions[p.id].recipeType === '24h' ? ' 24시간 유효 시간 안에 자정 전후로 제작하는 조건입니다.' : ''}`;
+  }
+  $$('[data-fee-label]').forEach(el => el.textContent = state.settings.fee ?? '—');
+  $$('[data-recovery-count]').forEach(el => el.textContent = state.settings.recovery ? '10' : '0');
+  for (const m of MATERIALS) {
+    const card = $(`[data-material-card="${m.id}"]`);
+    card?.classList.toggle('missing-card', state.prices[m.id] === null);
+    const hint = $(`[data-material-hint="${m.id}"]`);
+    if (hint) hint.textContent = compact(state.prices[m.id]);
+  }
+  const sort = $('#sort').value;
+  const sorted = allResults();
+  if (sort !== 'default') sorted.sort((a,b) => {
+    const key = sort === 'roi' ? 'roi' : 'net';
+    const av = a.r[key], bv = b.r[key];
+    return av === null ? (bv === null ? 0 : 1) : bv === null ? -1 : bv - av;
+  });
+  sorted.forEach(({p},index) => { const item = $(`[data-item="${p.id}"]`); if(item) item.style.order = index; });
+}
+function syncInputs() {
+  $$('input[data-price],input[data-potion],input[data-setting],input[data-quantity]').forEach(el => {
+    let v;
+    if (el.dataset.price) v = state.prices[el.dataset.price];
+    else if (el.dataset.potion) v = state.potions[el.dataset.potion][el.dataset.prop];
+    else if (el.dataset.setting) v = state.settings[el.dataset.setting];
+    else v = state.potions[el.dataset.quantity].ingredients[el.dataset.material];
+    if (el !== document.activeElement) el.value = inputValue(v);
+    el.classList.toggle('invalid', v === null);
+  });
+}
+function init() {
+  $('#recovery').checked = state.settings.recovery;
+  $('#recovery-fields').hidden = !state.settings.recovery;
+  renderMaterials(); renderRows(); syncInputs();
+  $('#save-status').textContent = storageAvailable ? (loaded ? '✓ 저장한 가격 불러옴' : '브라우저에 자동 저장') : '저장 불가 · 현재 화면에서만 유지';
+}
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (!el.matches('input[data-price],input[data-potion],input[data-setting],input[data-quantity]')) return;
+  const raw = el.value.replaceAll(',', '').trim();
+  const n = raw !== '' && /^\d+(\.\d+)?$/.test(raw) ? Number(raw) : null;
+  const v = validPrice(n) ? n : null;
+  if (el.dataset.price) state.prices[el.dataset.price] = v;
+  else if (el.dataset.potion) state.potions[el.dataset.potion][el.dataset.prop] = v;
+  else if (el.dataset.setting) state.settings[el.dataset.setting] = v;
+  else state.potions[el.dataset.quantity].ingredients[el.dataset.material] = v;
+  el.setAttribute('aria-invalid', v === null && raw !== '' ? 'true' : 'false');
+  save(); syncInputs(); updateNumbers();
+});
+document.addEventListener('focusout', e => {
+  if (e.target.matches('input[data-price],input[data-potion],input[data-setting],input[data-quantity]')) syncInputs();
+});
+document.addEventListener('click', e => {
+  const button = e.target.closest('[data-expand]');
+  if (!button) return;
+  const id = button.dataset.expand;
+  const p = POTIONS.find(p => p.id === id);
+  const detail = $(`#detail-${id}`);
+  if (openDetails.has(id)) {
+    openDetails.delete(id); detail.hidden = true; button.textContent = '+';
+  } else {
+    openDetails.add(id); detail.hidden = false; detail.innerHTML = detailHTML(p, calculate(p,state)); button.textContent = '−'; updateNumbers();
+  }
+  button.setAttribute('aria-expanded', openDetails.has(id));
+  button.setAttribute('aria-label', `${p.name} 계산 ${openDetails.has(id) ? '접기' : '펼치기'}`);
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (!el.dataset.recipeType && !el.dataset.owned) return;
+  const id = el.dataset.recipeType || el.dataset.owned;
+  if (el.dataset.recipeType) state.potions[id].recipeType = el.value;
+  else state.potions[id].owned = el.checked;
+  save();
+  const p = POTIONS.find(p => p.id === id);
+  $(`#detail-${id}`).innerHTML = detailHTML(p, calculate(p,state)); updateNumbers();
+});
+$('#recovery').addEventListener('change', e => {
+  state.settings.recovery = e.target.checked;
+  $('#recovery-fields').hidden = !e.target.checked;
+  save(); updateNumbers();
+});
+function setTab(tab) {
+  activeTab = tab;
+  for (const key of ['results', 'materials']) {
+    $(`#tab-${key}`).classList.toggle('active', key === tab);
+    $(`#tab-${key}`).setAttribute('aria-selected', key === tab);
+    $(`#${key}-panel`).hidden = key !== tab;
+  }
+}
+$('#tab-results').addEventListener('click', () => setTab('results'));
+$('#tab-materials').addEventListener('click', () => setTab('materials'));
+$('.tabs').addEventListener('keydown', e => {
+  if (!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+  e.preventDefault(); setTab(activeTab === 'results' ? 'materials' : 'results'); $(`#tab-${activeTab}`).focus();
+});
+$('#sort').addEventListener('change', renderRows);
+$('#group-filter').addEventListener('change', renderRows);
+$('#material-search').addEventListener('input', e => {
+  const q = e.target.value.trim().replaceAll(' ','').toLowerCase();
+  let count = 0;
+  for (const m of MATERIALS) {
+    const show = m.name.replaceAll(' ','').toLowerCase().includes(q);
+    $(`[data-material-card="${m.id}"]`).hidden = !show;
+    if (show) count++;
+  }
+  $$('[data-material-section]').forEach(section => {section.hidden = ![...section.querySelectorAll('[data-material-card]')].some(el => !el.hidden);});
+  $('#material-empty').hidden = count !== 0;
+});
+$('#reset').addEventListener('click', () => $('#reset-dialog').showModal());
+$('#reset-mobile').addEventListener('click', () => $('#reset-dialog').showModal());
+$('#reset-dialog').addEventListener('close', e => {
+  if (e.target.returnValue !== 'reset') return;
+  state = defaultState(); openDetails.clear(); loaded = false; $('#material-search').value = ''; save(); init(); toast('초기 가격과 제작 조건으로 되돌렸습니다.');
+});
+$('#download').addEventListener('click', () => {
+  const rows = [['비약','계산 기간(일)','하루 기본 피로도','회복제 추가 피로도/일','수수료(%)','판매가','제작 횟수','생산 수량','판매 대금','수수료','재료비','레시피비','회복제비','순이익','손익분기 판매가','미입력 항목']];
+  for (const {p,r} of allResults()) rows.push([p.name,2,state.settings.dailyFatigue,state.settings.recovery?350:0,state.settings.fee,state.potions[p.id].sale,r.runs,r.units,r.gross,r.fee,r.materialCost,r.recipeCost,r.recoveryCost,r.net,r.breakEvenSale,r.missing.map(materialName).join(' / ')]);
+  const csv = '\uFEFF' + rows.map(row => row.map(v => `"${String(v ?? '').replaceAll('"','""')}"`).join(',')).join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], {type:'text/csv;charset=utf-8;'}));
+  const a = document.createElement('a'); a.href = url; a.download = `연금술_이틀수익_${new Date().toISOString().slice(0,10)}.csv`; a.click();
+  setTimeout(() => URL.revokeObjectURL(url),1000); toast('15종 계산 결과를 CSV로 저장했습니다.');
+});
+init();
+
+})();</script>
+</body>
+</html>
